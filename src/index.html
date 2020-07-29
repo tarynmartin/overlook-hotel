@@ -1,12 +1,83 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <title>Webpack Starter Kit</title>
+    <title>Overlook Hotel</title>
   </head>
   <body>
-    <h1>Webpack Starter Kit</h1>
+    <header>
+      <section class='top-bar'>
+        <div class='hotel-name'>
+          <h1>Overlook Hotel</h1>
+        </div>
+        <div class='sign-in'>
+          <input>
+          <input>
+        </div>
+      </section>
+      <section class='search-bar hide'>
+        <div>
+          <input type='search'>
+        </div>
+        <div class='today-date'>
+          <h3>Date</h3>
+        </div>
+      </section>
+      <section class='select-date hide'>
+        <div class='filter-date'>
+          <h3>Make a Booking</h3>
+        </div>
+        <div class='today-date'>
+          <h3>Date</h3>
+        </div>
+      </section>
+    </header>
+    <main>
+      <section class='manager hide'>
+        <article class='rooms-available'>
 
-    <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
+        </article>
+        <article class='rooms-occupied'>
+        
+        </article>
+        <article class='revenue'>
+        
+        </article>
+      </section>
+      <section class='customer hide'>
+        <article class='bookings'>
+        
+        </article>
+        <article class='bookings-cost'>
+        
+        </article>
+      </section>
+      <section class='welcome'>
+        <h1>Welcome!</h1>
+        <h2>Please sign in to see our availability</h2>
+      </section>
+      <section class='manager-search hide'>
+        <article class='past-bookings'>
+          <h2>Customer Name</h2>
+          <div class='customer-past-bookings'>
+
+          </div>
+        </article>
+        <article class='customer-future-bookings'>
+      
+        </article>
+      </section>
+      <section class='customer-booking hide'>
+        <article class='available-rooms'>
+          <h2>Available Rooms</h2>
+        </article>
+        <article class='room-cost'>
+          <h2>Room Price</h2>
+        </article>
+        <article class='book-room'>
+          <h2>Book Room</h2>
+        </article>
+      </section>
+    </main>
 
     <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
   </body>
