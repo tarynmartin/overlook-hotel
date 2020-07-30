@@ -1,0 +1,15 @@
+.customer-booking {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  color: $primary-background;
+  margin: 2vw;
+}
+
+.available-rooms,
+.room-cost,
+.book-room {
+  background-color: $header;
+  width: 100%;
+  margin-top: 2vw;
+  text-align: center;
+}
