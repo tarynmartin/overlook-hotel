@@ -1,0 +1,24 @@
+.manager-search {
+  display: grid;
+  grid-template-rows: 1fr 3fr;
+  grid-template-columns: repeat(2, 1fr);
+  color: $primary-background;
+  margin: 2vw;
+}
+
+.past-bookings {
+  background-color: $primary-background;
+  color: $header;
+  width: 100%;
+  height: 4vw;
+  margin: 0;
+  grid-column: 1 / span 2;
+  text-align: center;
+}
+
+.customer-past-bookings,
+.customer-future-bookings {
+  background-color: $header;
+  margin-top: 2vw;
+  text-align: center;
+}
