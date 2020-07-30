@@ -1,11 +1,22 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-;
+@import 'variables';
+@import 'mixins';
+@import 'fonts';
+@import 'welcome-page';
+@import 'nav-bar';
+@import 'booking-page';
+@import 'customer-dashboard';
+@import 'manager-dashboard';
+@import 'search-results';
 
 body {
   background: $primary-background;
+  margin: 0;
 }
 
 .hide {
   display: none;
 }
+
+/*need to style filter date button-it needs to be a dropdown date selector?*/
+

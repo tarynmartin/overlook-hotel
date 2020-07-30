@@ -1,0 +1,23 @@
+.customer {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 2vw;
+  color: $primary-background;
+}
+
+.bookings {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-left: 2vw;
+  background-color: $header;
+  width: 97%;
+  margin-top: 2vw;
+  text-align: center;
+}
+
+.bookings-cost {
+  background-color: $header;
+  width: 30vw;
+  margin-top: 2vw;
+  text-align: center;
+}

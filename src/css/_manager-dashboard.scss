@@ -1,0 +1,19 @@
+.manager {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2vw;
+  color: $primary-background;
+}
+
+.rooms-available {
+  margin-left: 2vw;
+}
+
+.rooms-available,
+.rooms-occupied,
+.revenue {
+  background-color: $header;
+  width: 30vw;
+  margin-top: 2vw;
+  text-align: center;
+}

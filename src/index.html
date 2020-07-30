@@ -10,60 +10,76 @@
           <h1>Overlook Hotel</h1>
         </div>
         <div class='sign-in'>
-          <input>
-          <input>
+          <input class='username' type='text' placeholder='Username'>
+          <div class='password-box'>
+            <input class='password' type='password' placeholder='Password'>
+            <button class='psw-submit'>Submit</button>
+          </div>
         </div>
       </section>
-      <section class='search-bar hide'>
+      <section class='search-bar'>
         <div>
-          <input type='search'>
+          <input class='search' type='search' placeholder='Search for Guest'>
         </div>
         <div class='today-date'>
-          <h3>Date</h3>
+          <h2>Date</h2>
         </div>
       </section>
       <section class='select-date hide'>
         <div class='filter-date'>
-          <h3>Make a Booking</h3>
+          <Label>Make a Booking</Label>
+          <button>Select a Date</button>
         </div>
         <div class='today-date'>
-          <h3>Date</h3>
+          <h2>Date</h2>
         </div>
       </section>
     </header>
     <main>
       <section class='manager hide'>
         <article class='rooms-available'>
-
+          <h2>Rooms Available Today</h2>
+          <h1>##</h1>
         </article>
         <article class='rooms-occupied'>
-        
+          <h2>Rooms Occupied Today</h2>
+          <h1>##</h1>
         </article>
         <article class='revenue'>
-        
+          <h2>Total Revenue Today</h2>
+          <h1>##</h1>
         </article>
       </section>
       <section class='customer hide'>
-        <article class='bookings'>
-        
-        </article>
+        <div class='bookings'>
+          <article class='past-bookings-dashboard'>
+            <h2>Past Bookings</h2>
+          </article>
+          <article class='todays-booking'>
+            <h2>Today's Booking</h2>
+          </article>
+          <article class='future-bookings-dashboard'>
+            <h2>Future Bookings</h2>
+          </article>
+        </div>
         <article class='bookings-cost'>
-        
+          <h2>Total Amount Spent on Rooms</h2>
+          <h1>$###.##</h1>
         </article>
       </section>
-      <section class='welcome'>
-        <h1>Welcome!</h1>
+      <section class='welcome hide'>
+        <h1 class='welcome-text'>Welcome!</h1>
         <h2>Please sign in to see our availability</h2>
       </section>
-      <section class='manager-search hide'>
+      <section class='manager-search'>
         <article class='past-bookings'>
           <h2>Customer Name</h2>
-          <div class='customer-past-bookings'>
-
-          </div>
         </article>
+        <div class='customer-past-bookings'>
+          <h2>Past Bookings</h2>
+        </div>
         <article class='customer-future-bookings'>
-      
+          <h2>Future Bookings</h2>
         </article>
       </section>
       <section class='customer-booking hide'>
