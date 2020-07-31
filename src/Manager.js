@@ -2,7 +2,6 @@ class Manager extends User {
   constructor() {
     super();
     this.userName = 'manager';
-    this.password = 'overlook2020';
     this.freeRooms = 0;
     this.percentOccupied = '';
     this.totalRevenue = 0;
