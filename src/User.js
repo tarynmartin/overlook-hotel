@@ -2,6 +2,7 @@ class User {
   constructor() {
     this.manager = false;
     this.customer = false;
+    this.password = 'overlook2020';
   }
   checkUserType(userName) {
     if (userName === 'manager') {
