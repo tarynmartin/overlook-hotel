@@ -1,28 +1,63 @@
 class Rooms {
   constructor() {
     this.rooms = {
-      residentialRooms: [],
+      residentialSuites: [],
       suites: [],
       singleRooms: [],
       juniorSuites: []
     };
     this.oneBed = [];
     this.twoBeds = [];
+    this.twinBed = [];
     this.fullBed = [];
     this.queenBed = [];
     this.kingBed = [];
   }
-  sortAllRooms() {
-    // sort rooms data from server
-    // sort by roomType and add to object arrays
+  sortAllRooms(allRooms) {
+    allRooms.forEach(room => {
+      switch (room.roomType) {
+        case 'residential suite':
+          this.rooms.residentialSuites.push(room);
+          break;
+        case 'suite':
+          this.rooms.suites.push(room);
+          break;
+        case 'single room':
+          this.rooms.singleRooms.push(room);
+          break;
+        case 'junior suite':
+          this.rooms.juniorSuites.push(room); 
+      }
+    })
   }
-  sortByBedNumber(rooms) {
-    // iterate over each array in rooms array
-    // push object into appropriate array for amount of beds
+  sortNumberOfBeds(allRooms) {
+    allRooms.forEach(room => {
+      switch (room.numBeds) {
+        case 1:
+          this.oneBed.push(room);
+          break;
+        case 2:
+          this.twoBeds.push(room);
+          break;
+      }
+    })
   }
-  sortByBedType(rooms) {
-    // iterate over each array in rooms array
-    // push object into appropriate array for each bed type
+  sortByBedType(allRooms) {
+    allRooms.forEach(room => {
+      switch (room.bedSize) {
+        case 'twin':
+          this.twinBed.push(room);
+          break;
+        case 'full':
+          this.fullBed.push(room);
+          break;
+        case 'queen':
+          this.queenBed.push(room);
+          break;
+        case 'king':
+          this.kingBed.push(room);
+      }
+    })
   }
 }
 
