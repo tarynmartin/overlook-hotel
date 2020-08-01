@@ -55,7 +55,7 @@ describe('User', function () {
     expect(user1.customer).to.equal(false);
     expect(user1.manager).to.equal(false);
   });
-  it('shouldn\'t be able use checkUserType with invalid userName-string', function () {
+  it('shouldn\'t be able use checkUserType with invalid userName', function () {
     user1.checkUserType('customer52');
 
     expect(user1.customer).to.equal(false);
