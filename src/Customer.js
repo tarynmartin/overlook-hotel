@@ -3,7 +3,6 @@ import User from '../src/User';
 class Customer extends User {
   constructor(date, bookings, userName, users, rooms, user) {
     super(date, bookings, userName, users, rooms);
-    this.bookings = bookings;
     this.name = user.name;
     this.pastBookings = [];
     this.futureBookings = [];
@@ -28,7 +27,6 @@ class Customer extends User {
     rooms.reduce((acc, room) => {
       this.pastBookings.forEach(booking => {
         if (booking.roomNumber === room.number) {
-          console.log(true)
           acc += room.costPerNight;
         }
       })
