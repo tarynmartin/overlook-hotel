@@ -85,6 +85,11 @@ describe('User', function () {
     expect(user2.manager).to.equal(true);
     expect(user2.totalRevenue).to.equal(880.93);
   });
+  it('should be able to pull userId from userName', function () {
+    user1.pullUserId('customer1');
+
+    expect(user1.id).to.deep.equal(1);
+  });
   it('should be able to calculate total revenue today', function () {
     user1.calculateAmountSpent("2020/01/25", bookings, rooms);
 
