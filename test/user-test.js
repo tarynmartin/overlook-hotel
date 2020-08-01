@@ -24,32 +24,18 @@ describe('User', function () {
   it('should have a password of overlook2020', function () {
     expect(user.password).to.equal('overlook2020');
   });
-  it('should have an empty array for pastBookings', function () {
-    expect(user.pastBookings).to.deep.equal([]);
-  });
-  it('should have 0 as default for availableRooms', function () {
-    expect(user.availableRooms).to.equal(0);
-  });
-  it('should have 0 as default for unavailableRooms', function () {
-    expect(user.unavailableRooms).to.equal(0);
-  });
-  it('should have an empty array for bookingToday', function () {
-    expect(user.bookingToday).to.deep.equal([]);
-  });
-  it('should have an empty array for futureBookings', function () {
-    expect(user.futureBookings).to.deep.equal([]);
-  });
+  // it('should have an empty array for bookingToday', function () {
+  //   expect(user.bookingToday).to.deep.equal([]);
+  // });
   it('should have 0 as default for amountSpent', function () {
     expect(user.amountSpent).to.equal(0);
   });
-  // it('should be able to calculate rooms available today', function () {
-  //   //call availableRooms
-  //   expect(manager.percentOccupied).to.equal(0);
-  // });
-  // it('should be able to calculate rooms unavailable today', function () {
-  //  // call percentUnavailable
-  //   expect(manager.percentOccupied).to.equal(0);
-  // });
+  it('should be able to change customer to equal true with checkUserType', function() {
+    user.checkUserType(this.userName);
+
+    expect(user.customer).to.equal(true);
+    expect(user.manager).to.equal(false);
+  });
   it('should be able to calculate total revenue today', function () {
     user.calculateAmountSpent("2020/01/25", bookings, rooms);
 
