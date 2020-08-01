@@ -2,8 +2,10 @@ class User {
   constructor(date, bookings, userName, users, rooms) {
     this.manager = false;
     this.customer = false;
+    this.todaysDate = new Date(date);
     this.userName = userName;
     this.password = 'overlook2020';
+    this.id = 0;
     this.amountSpent = 0;
     this.totalRevenue = 0;
   }
@@ -13,7 +15,11 @@ class User {
       this.totalRevenue = this.calculateAmountSpent(date, bookings, rooms);
     } else if (userName.startsWith('customer')){
       this.customer = true;
+      this.pullUserId(userName);
     }
+  }
+  pullUserId(userName) {
+    this.id = Number.parseInt(userName.slice(8));
   }
   calculateAmountSpent(date, bookings, rooms) {
     const inputDate = new Date(date);
