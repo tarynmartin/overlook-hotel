@@ -58,10 +58,10 @@ describe('Customer', function () {
   it('should be a function', function () {
     expect(Customer).to.be.a('function');
   });
-  it('should be an instance of manager', function () {
+  it('should be an instance of customer', function () {
     expect(customer).to.be.an.instanceof(Customer);
   });
-  it('should have a userName of manager', function () {
+  it('should have the name of the customer', function () {
     expect(customer.name).to.equal("Leatha Ullrich");
   });
   it('should have an empty array as default for past bookings', function () {
