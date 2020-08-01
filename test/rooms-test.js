@@ -22,6 +22,32 @@ describe('Rooms', function () {
   it('should be an instance of rooms', function () {
     expect(rooms).to.be.an.instanceof(Rooms);
   });
+  it('should have an empty object as default for rooms', function () {
+    expect(rooms.rooms).to.deep.equal({
+      residentialSuites: [],
+      suites: [],
+      singleRooms: [],
+      juniorSuites: []
+    });
+  });
+  it('should have an empty array as default for oneBed', function () {
+    expect(rooms.oneBed).to.deep.equal([]);
+  });
+  it('should have an empty array as default for twoBeds', function () {
+    expect(rooms.twoBeds).to.deep.equal([]);
+  });
+  it('should have an empty array as default for twinBed', function () {
+    expect(rooms.twinBed).to.deep.equal([]);
+  });
+  it('should have an empty array as default for fullBed', function () {
+    expect(rooms.fullBed).to.deep.equal([]);
+  });
+  it('should have an empty array as default for queenBed', function () {
+    expect(rooms.queenBed).to.deep.equal([]);
+  });
+  it('should have an empty array as default for kingBed', function () {
+    expect(rooms.kingBed).to.deep.equal([]);
+  });
   it('should sort rooms into an object based on roomType', function () {
     rooms.sortAllRooms(roomsArray);
 
