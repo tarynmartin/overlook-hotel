@@ -1,15 +1,17 @@
 class User {
-  constructor(userName, users, rooms) {
+  constructor(date, bookings, userName, users, rooms) {
     this.manager = false;
     this.customer = false;
     this.userName = userName;
     this.password = 'overlook2020';
     this.amountSpent = 0;
+    this.totalRevenue = 0;
   }
-  checkUserType(userName) {
+  checkUserType(userName, date, bookings, rooms) {
     if (userName === 'manager') {
       this.manager = true;
-    } else {
+      this.totalRevenue = this.calculateAmountSpent(date, bookings, rooms);
+    } else if (userName.startsWith('customer')){
       this.customer = true;
     }
   }
@@ -24,8 +26,9 @@ class User {
           total = total + room.costPerNight;
         }
       })
-      this.amountSpent = Number.parseFloat(total.toFixed(2));
-      return total;
+      let amountTotal = Number.parseFloat(total.toFixed(2));
+      this.amountSpent = amountTotal;
+      return amountTotal;
     }, 0)
   }
 }
