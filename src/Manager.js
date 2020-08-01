@@ -3,7 +3,6 @@ import User from '../src/User';
 class Manager extends User {
   constructor(date, bookings, userName, users, rooms) {
     super(date, bookings, userName, users, rooms);
-    this.date = new Date(date);
     this.rooms = rooms;
     this.bookings = bookings;
     this.userName = userName;
@@ -13,7 +12,7 @@ class Manager extends User {
   availableRooms() {
     const bookedRooms = this.bookings.reduce((acc, booking) => {
       const bookedDate = new Date(booking.date);
-      if (this.date.getTime() === bookedDate.getTime()) {
+      if (this.todaysDate.getTime() === bookedDate.getTime()) {
         acc++;
       }
       return acc;
