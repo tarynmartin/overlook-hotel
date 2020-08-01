@@ -23,7 +23,6 @@ class Customer extends User {
         }
       }
     })
-    console.log(this.pastBookings);
   }
   spendingByCustomer(rooms) {
     rooms.reduce((acc, room) => {
