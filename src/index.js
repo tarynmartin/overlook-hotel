@@ -13,3 +13,6 @@ import './images/turing-logo.png'
 console.log('This is the JavaScript entry file - your code begins here.');
 
 let allBookings = [];
+
+// on login (press submit button), create a new user
+// here, do an if/else statement for user data; if manager = true, instantiate maanger class, else if customer = true, instantiate customer
