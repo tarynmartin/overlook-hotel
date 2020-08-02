@@ -8,8 +8,8 @@ describe('User', function () {
   let rooms;
   let bookings;
   beforeEach(() => {
-    user1 = new User("2020/01/25", bookings, 'customer1', users, rooms);
-    user2 = new User("2020/01/25", bookings, 'manager', users, rooms);
+    user1 = new User("2020/01/25", 'customer1');
+    user2 = new User("2020/01/25", 'manager');
     users = [
       { "id": 1, "name": "Leatha Ullrich" }, 
       { "id": 2, "name": "Rocio Schuster" }, 
