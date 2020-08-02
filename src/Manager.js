@@ -1,8 +1,8 @@
 import User from '../src/User';
 
 class Manager extends User {
-  constructor(date, bookings, userName, users, rooms) {
-    super(date, bookings, userName, users, rooms);
+  constructor(date, userName, bookings, rooms) {
+    super(date, userName);
     this.rooms = rooms;
     this.bookings = bookings;
     this.userName = userName;
