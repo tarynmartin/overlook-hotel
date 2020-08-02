@@ -16,15 +16,15 @@ class User {
       return 'manager';
     } else if (userName.startsWith('customer')){
       this.pullUserId(userName);
+      if (this.customer === true) {
+        return 'customer';
+      }
     }
   }
   pullUserId(userName) {
     this.id = Number.parseInt(userName.slice(8));
     if (this.id > 0 && this.id < 51) {
       this.customer = true;
-      return "customer";
-    } else {
-      return;
     }
   }
   calculateAmountSpent(date, bookings, rooms) {
