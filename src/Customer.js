@@ -1,31 +1,38 @@
+import User from '../src/User';
+
 class Customer extends User {
-  constructor(userId, name) {
-    super();
-    this.id = userId;
-    this.name = name;
-    this.userName = name + this.id;
+  constructor(date, bookings, userName, users, rooms, user) {
+    super(date, bookings, userName, users, rooms);
+    this.name = user.name;
     this.pastBookings = [];
-    this.bookingToday = [];
     this.futureBookings = [];
-    this.amountSpend = 0;
+    this.todaysBooking = [];
+    this.totalSpent = 0;
   }
-  findBookings() {
-    // iterate over all bookings
-    // if userId matches, push booking into array
-    //if date is before today, call findPastBookings
-    // if date matches current date, push to bookingToday
-    // call futureBooking if date is in the future
+  findBookings(bookings) {
+    bookings.forEach(booking => {
+      let bookedDate = new Date(booking.date);
+      if (this.id === booking.userID) {
+        if (this.todaysDate.getTime() === bookedDate.getTime()) {
+          this.todaysBooking.push(booking);
+        } else if (bookedDate.getTime() > this.todaysDate.getTime()) {
+          this.futureBookings.push(booking);
+        } else if (bookedDate.getTime() < this.todaysDate.getTime()) {
+          this.pastBookings.push(booking);
+        }
+      }
+    })
   }
-  findPastBookings() {
-    // add new booking to pastBookings array
-    // sort pastBookings array, newest at beginning
-  }
-  calculateAmountSpent() {
-    // iterate over past bookings
-    // use reduce
-    // compare booking roomNumber to rooms.number
-    // from rooms, add costPerNight to acc
-    // return acc
+  spendingByCustomer(rooms) {
+    rooms.reduce((acc, room) => {
+      this.pastBookings.forEach(booking => {
+        if (booking.roomNumber === room.number) {
+          acc += room.costPerNight;
+        }
+      })
+      this.totalSpent = acc;
+      return acc;
+    }, 0)
   }
 }
 

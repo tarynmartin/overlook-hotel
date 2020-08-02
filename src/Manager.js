@@ -1,20 +1,27 @@
+import User from '../src/User';
+
 class Manager extends User {
-  constructor() {
-    super();
-    this.userName = 'manager';
-    this.freeRooms = 0;
-    this.percentOccupied = '';
-    this.totalRevenue = 0;
+  constructor(date, bookings, userName, users, rooms) {
+    super(date, bookings, userName, users, rooms);
+    this.rooms = rooms;
+    this.bookings = bookings;
+    this.userName = userName;
+    this.numberOfAvailableRooms = 0;
+    this.percentageUnavailable = 0;
   }
   availableRooms() {
-    // iterate over bookings and return how many unbooked
+    const bookedRooms = this.bookings.reduce((acc, booking) => {
+      const bookedDate = new Date(booking.date);
+      if (this.todaysDate.getTime() === bookedDate.getTime()) {
+        acc++;
+      }
+      return acc;
+    }, 0)
+    this.numberOfAvailableRooms = this.rooms.length - bookedRooms;
   }
   percentUnavailable() {
-    // calculate percent and move to percentOccupied
-  }
-  calculateRevenue() {
-    // iterate over booked rooms
-    // collect price (reduce?) and add to totalRevenue
+    const percentOccupied = ((this.rooms.length - this.numberOfAvailableRooms) / this.rooms.length) * 100;
+    this.percentageUnavailable = Number.parseInt(percentOccupied.toFixed());
   }
 }
 
