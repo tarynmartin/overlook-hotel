@@ -9,10 +9,10 @@ class Customer extends User {
     this.todaysBooking = [];
     this.totalSpent = 0;
   }
-  findBookings(bookings) {
+  findBookings(bookings, id) {
     bookings.forEach(booking => {
       let bookedDate = new Date(booking.date);
-      if (this.id === booking.userID) {
+      if (id === booking.userID) {
         if (this.todaysDate.getTime() === bookedDate.getTime()) {
           this.todaysBooking.push(booking);
         } else if (bookedDate.getTime() > this.todaysDate.getTime()) {
