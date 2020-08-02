@@ -13,9 +13,11 @@ class User {
     if (userName === 'manager') {
       this.manager = true;
       this.totalRevenue = this.calculateAmountSpent(date, bookings, rooms);
+      return 'manager';
     } else if (userName.startsWith('customer')){
       this.customer = true;
       this.pullUserId(userName);
+      return 'customer';
     }
   }
   pullUserId(userName) {
