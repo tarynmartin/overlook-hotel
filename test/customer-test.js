@@ -17,9 +17,9 @@ describe('Customer', function () {
       { "id": 1, "name": "Leatha Ullrich" },
       { "id": 2, "name": "Rocio Schuster" },
       { "id": 3, "name": "Kelvin Schiller" }];
-    customer = new Customer("2020/01/25", bookings1, 'customer1', users, rooms, users[0]);
-    customer2 = new Customer("2020/01/25", pastBookingsExample, 'customer1', users, rooms, users[0]);
-    customer3 = new Customer("2020/01/25", futureBookingsExample, 'customer1', users, rooms, users[0]);
+    customer = new Customer("2020/01/25", 'customer1', users[0]);
+    customer2 = new Customer("2020/01/25", 'customer1', users[0]);
+    customer3 = new Customer("2020/01/25", 'customer1', users[0]);
     customer4 = new Customer("2020/01/25", sadPathBookings, 'customer1', users, rooms, users[0]);
     bookings1 = [
       { "id": "5fwrgu4i7k55hl6sz", "userID": 9, "date": "2020/04/22", "roomNumber": 15, "roomServiceCharges": [] },
