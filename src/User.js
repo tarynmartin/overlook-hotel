@@ -1,5 +1,5 @@
 class User {
-  constructor(date, bookings, userName, users, rooms) {
+  constructor(date, userName) {
     this.manager = false;
     this.customer = false;
     this.todaysDate = new Date(date);
@@ -29,7 +29,7 @@ class User {
         const bookedDate = new Date(booking.date);
         const bookingDate = bookedDate.getTime();
         if (userDate === bookingDate && room.number === booking.roomNumber) {
-          total = total + room.costPerNight;
+          total += room.costPerNight;
         }
       })
       let amountTotal = Number.parseFloat(total.toFixed(2));
