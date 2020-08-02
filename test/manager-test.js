@@ -7,7 +7,7 @@ describe('Manager', function() {
   let rooms;
   let bookings;
   beforeEach(() => {
-    manager = new Manager("2020/01/25", bookings, 'manager', users, rooms);
+    manager = new Manager("2020/01/25", 'manager', bookings, rooms);
     users = [
       { "id": 1, "name": "Leatha Ullrich" }, 
       { "id": 2, "name": "Rocio Schuster" }, 
