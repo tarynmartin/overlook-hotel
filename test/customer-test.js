@@ -20,7 +20,7 @@ describe('Customer', function () {
     customer = new Customer("2020/01/25", 'customer1', users[0]);
     customer2 = new Customer("2020/01/25", 'customer1', users[0]);
     customer3 = new Customer("2020/01/25", 'customer1', users[0]);
-    customer4 = new Customer("2020/01/25", sadPathBookings, 'customer1', users, rooms, users[0]);
+    customer4 = new Customer("2020/01/25", 'customer1', users[0]);
     bookings1 = [
       { "id": "5fwrgu4i7k55hl6sz", "userID": 9, "date": "2020/04/22", "roomNumber": 15, "roomServiceCharges": [] },
       { "id": "5fwrgu4i7k55hl6t5", "userID": 43, "date": "2020/01/24", "roomNumber": 24, "roomServiceCharges": [] },
@@ -75,19 +75,19 @@ describe('Customer', function () {
   });
   it('should be able to find if a user has a booking today', function () {
     customer.checkUserType('customer1', '2020/01/25', bookings1, rooms);
-    customer.findBookings(bookings1);
+    customer.findBookings(bookings1, 1);
 
     expect(customer.todaysBooking).to.deep.equal([{ "id": "5fwrgu4i7k55hl6t8", "userID": 1, "date": "2020/01/25", "roomNumber": 12, "roomServiceCharges": [] }]);
   });
   it('should be able to find if a user has past bookings', function () {
     customer2.checkUserType('customer1', '2020/01/25', pastBookingsExample, rooms);
-    customer2.findBookings(pastBookingsExample);
+    customer2.findBookings(pastBookingsExample, 1);
 
     expect(customer2.pastBookings).to.deep.equal([{ "id": "5fwrgu4i7k55hl6sz", "userID": 1, "date": "2020/01/21", "roomNumber": 15, "roomServiceCharges": [] }, { "id": "5fwrgu4i7k55hl6t5", "userID": 1, "date": "2020/01/22", "roomNumber": 24, "roomServiceCharges": [] }, { "id": "5fwrgu4i7k55hl6t7", "userID": 1, "date": "2020/01/24", "roomNumber": 7, "roomServiceCharges": [] }]);
   });
   it('should be able to find if a user has future bookings', function () {
     customer3.checkUserType('customer1', '2020/01/25', futureBookingsExample, rooms);
-    customer3.findBookings(futureBookingsExample);
+    customer3.findBookings(futureBookingsExample, 1);
 
     expect(customer3.futureBookings).to.deep.equal([{ "id": "5fwrgu4i7k55hl6sz", "userID": 1, "date": "2020/04/22", "roomNumber": 15, "roomServiceCharges": [] },
       { "id": "5fwrgu4i7k55hl6t5", "userID": 1, "date": "2020/04/24", "roomNumber": 24, "roomServiceCharges": [] },
@@ -95,7 +95,7 @@ describe('Customer', function () {
   });
   it('should be able to sort bookings by user', function () {
     customer4.checkUserType('customer1', '2020/01/25', sadPathBookings, rooms);
-    customer4.findBookings(sadPathBookings);
+    customer4.findBookings(sadPathBookings, 1);
 
     expect(customer4.pastBookings).to.deep.equal([{ "id": "5fwrgu4i7k55hl6t5", "userID": 1, "date": "2020/01/24", "roomNumber": 24, "roomServiceCharges": [] }]);
     expect(customer4.todaysBooking).to.deep.equal([{ "id": "5fwrgu4i7k55hl6t8", "userID": 1, "date": "2020/01/25", "roomNumber": 12, "roomServiceCharges": [] }]);
@@ -104,7 +104,7 @@ describe('Customer', function () {
   it('should calculate amount spent by a customer', function () {
     customer2.pastBookings = [];
     customer2.checkUserType('customer1', '2020/01/25', pastBookingsExample, rooms);
-    customer2.findBookings(pastBookingsExample);
+    customer2.findBookings(pastBookingsExample, 1);
     customer2.spendingByCustomer(rooms);
 
     expect(customer2.totalSpent).to.equal(853.26);
