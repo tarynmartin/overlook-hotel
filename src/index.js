@@ -40,6 +40,10 @@ const totalRoomsAvailableToday = document.querySelector(
 );
 const percentRoomsOccupiedToday = document.querySelector(".percent-occupied");
 const totalRevenueToday = document.querySelector(".total-revenue");
+const customerPastBookings = document.querySelector(".dashboard-past-bookings");
+const customerTodayBooking = document.querySelector('.dashboard-today-booking');
+const customerFutureBooking = document.querySelector('.dashboard-future-bookings');
+const customerPastSpending = document.querySelector('.customer-amount-spent');
 
 submitBtn.addEventListener("click", createUser);
 userNameInput.addEventListener("input", collectUserName);
@@ -53,12 +57,14 @@ getOnLoad().then(allData => {
     rooms.push(room);
   })
 })
-  .then(() => loadPage());
 
-function loadPage() {
-  alert('You did it!');
-  console.log(users);
-  console.log(rooms);
+function findAllBookings() {
+  const promise = fetch(
+    "https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings"
+  )
+    .then((response) => response.json())
+    .then((data) => data.bookings);
+  return promise;
 }
 
 function collectUserName(event) {
@@ -70,21 +76,28 @@ function collectPassword(event) {
 }
 
 function createUser() {
-  getOnClick();
-  user = new User(currentDate, userName);
-  let checkUser = user.checkUserType(userName, currentDate, allBookings, rooms);
-  console.log(user.id);
-  if (checkUser === 'manager' && user.password === password) {
-    manager = new Manager(currentDate, userName, allBookings, rooms);
-    landingPage.classList.add('hide');
-    showManagerDashboard();
-  } else if (checkUser === 'customer' && user.password === password) {
-    customer = new Customer(currentDate, userName, users[user.id - 1]);
-    landingPage.classList.add("hide");
-    showCustomerDashboard(); 
-  } else {
-    alert('Please enter a valid username and password')
-  }
+  findAllBookings()
+    .then((bookingsData) => {
+      bookingsData.forEach((booking) => {
+        allBookings.push(booking);
+      });
+      user = new User(currentDate, userName);
+      let checkUser = user.checkUserType(userName, currentDate, allBookings, rooms);
+      if (checkUser === "manager" && user.password === password) {
+        manager = new Manager(currentDate, userName, allBookings, rooms);
+        landingPage.classList.add("hide");
+        showManagerDashboard();
+      } else if (checkUser === "customer" && user.password === password) {
+        customer = new Customer(currentDate, userName, users[user.id - 1]);
+        landingPage.classList.add("hide");
+        customer.findBookings(allBookings, user.id);
+        customer.spendingByCustomer(rooms);
+        showCustomerDashboard();
+      } else {
+        alert("Please enter a valid username and password");
+      }
+    })
+    .catch((error) => console.log(error));
 }
 
 function showManagerDashboard() {
@@ -101,22 +114,42 @@ function showManagerDashboard() {
 function showCustomerDashboard() {
   makeBookingBar.classList.remove('hide');
   customerDashboard.classList.remove('hide');
+  displayCustomersPastBookings();
+  displayCustomersBookingToday();
+  displayCustomersFutureBookings();
+  displayCustomerPastSpending();
 }
 
-function findAllBookings() {
-  const promise = fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings')
-    .then(response => response.json())
-    .then(data => data.bookings)
-  return promise;
-}
-
-function getOnClick() {
-  findAllBookings()
-  .then(bookingsData => {
-    bookingsData.forEach(booking => {
-      allBookings.push(booking)
+function displayCustomersPastBookings() {
+  if (customer.pastBookings.length === 0) {
+    customerPastBookings.insertAdjacentHTML('afterend', `<h5>You have not stayed here before! We look forward to having you.</h5>`);
+  } else {
+    customer.pastBookings.forEach(booking => {
+      customerPastBookings.insertAdjacentHTML('afterend', `<h5>You stayed in room ${booking.roomNumber} on ${booking.date}</h5>`);
     })
-    console.log(allBookings);
-  })
-  .catch(error => console.log(error))
+  }
+}
+
+function displayCustomersBookingToday() {
+  if (customer.todaysBooking.length === 0) {
+    customerTodayBooking.insertAdjacentHTML('afterend', `<h5>You don't have a stay booked with us today!</h5>`);
+  } else {
+    customer.todaysBooking.forEach(booking => {
+      customerTodayBooking.insertAdjacentHTML('afterend', `<h5>You are staying in room ${booking.roomNumber} tonight.</h5>`);
+    })
+  }
+}
+
+function displayCustomersFutureBookings() {
+  if (customer.futureBookings.length === 0) {
+    customerFutureBooking.insertAdjacentHTML('afterend', `<h5>You don't have any stays planned in the future. We hope to see you soon!</h5>`);
+  } else {
+    customer.futureBookings.forEach(booking => {
+      customerFutureBooking.insertAdjacentHTML('afterend', `<h5>You will be staying in room ${booking.roomNumber} on ${booking.date}</h5>`);
+    })
+  }
+}
+
+function displayCustomerPastSpending() {
+  customerPastSpending.innerText = `$${customer.totalSpent}`;
 }
