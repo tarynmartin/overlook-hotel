@@ -11,6 +11,11 @@
 
 .hotel-name {
   margin: 0 2vw;
+  color: $gray;
+}
+
+.hotel-title {
+  margin-top: 3vw;
 }
 
 .sign-in {
@@ -25,7 +30,7 @@
 
 .displayed-name {
   text-align: right;
-  color: $primary-background;
+  color: $gray;
   margin: 6vw 1.5vw;
 }
 
@@ -44,7 +49,7 @@
 
 .psw-submit {
   background-color: $header;
-  color: $primary-background;
+  color: $gray;
   border: none;
   font-size: 1.6vw;
   width: 80%;
@@ -54,7 +59,7 @@
 .search-bar,
 .select-date {
   background-color: $header;
-  color: $primary-background;
+  color: $gray;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   margin: 0;
@@ -73,5 +78,6 @@ label {
 
 .today-date {
   text-align: right;
-  padding-right: 5.5vw;
+  padding-right: 3.5vw;
+  align-items: flex-end;
 }

@@ -136,30 +136,30 @@ function showCustomerDashboard() {
 
 function displayCustomersPastBookings() {
   if (customer.pastBookings.length === 0) {
-    customerPastBookings.insertAdjacentHTML('afterend', `<h5>You have not stayed here before! We look forward to having you.</h5>`);
+    customerPastBookings.insertAdjacentHTML('afterend', `<h5 class='display-history'>You have not stayed here before! We look forward to having you.</h5>`);
   } else {
     customer.pastBookings.forEach(booking => {
-      customerPastBookings.insertAdjacentHTML('afterend', `<h5>You stayed in room ${booking.roomNumber} on ${booking.date}</h5>`);
+      customerPastBookings.insertAdjacentHTML("afterend", `<h5 class='display-history'>You stayed in room ${booking.roomNumber} on ${booking.date}</h5>`);
     })
   }
 }
 
 function displayCustomersBookingToday() {
   if (customer.todaysBooking.length === 0) {
-    customerTodayBooking.insertAdjacentHTML('afterend', `<h5>You don't have a stay booked with us today!</h5>`);
+    customerTodayBooking.insertAdjacentHTML("afterend", `<h5 class='display-history'>You don't have a stay booked with us today!</h5>`);
   } else {
     customer.todaysBooking.forEach(booking => {
-      customerTodayBooking.insertAdjacentHTML('afterend', `<h5>You are staying in room ${booking.roomNumber} tonight.</h5>`);
+      customerTodayBooking.insertAdjacentHTML("afterend",`<h5 class='display-history'>You are staying in room ${booking.roomNumber} tonight.</h5>`);
     })
   }
 }
 
 function displayCustomersFutureBookings() {
   if (customer.futureBookings.length === 0) {
-    customerFutureBooking.insertAdjacentHTML('afterend', `<h5>You don't have any stays planned in the future. We hope to see you soon!</h5>`);
+    customerFutureBooking.insertAdjacentHTML("afterend", `<h5 class='display-history'>You don't have any stays planned in the future. We hope to see you soon!</h5>`);
   } else {
     customer.futureBookings.forEach(booking => {
-      customerFutureBooking.insertAdjacentHTML('afterend', `<h5>You will be staying in room ${booking.roomNumber} on ${booking.date}</h5>`);
+      customerFutureBooking.insertAdjacentHTML("afterend",`<h5 class='display-history'>You will be staying in room ${booking.roomNumber} on ${booking.date}</h5>`);
     })
   }
 }

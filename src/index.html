@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Overlook Hotel</title>
   </head>
   <body>
     <header>
       <section class='top-bar'>
         <div class='hotel-name'>
-          <h1>Overlook Hotel</h1>
+          <h1 class='hotel-title'>Overlook Hotel</h1>
         </div>
         <div class='sign-in'>
           <input class='username' type='text' placeholder='Username' aria-label='add username'>
@@ -20,7 +21,7 @@
         </div>
       </section>
       <section class='search-bar hide'>
-        <div>
+        <div class='search-styling'>
           <input class='search' type='search' placeholder='Search for Guest' aria-label='search for guest'>
         </div>
         <div class='today-date'>
@@ -40,32 +41,30 @@
     <main>
       <section class='manager hide'>
         <article class='rooms-available'>
-          <h2>Rooms Available Today</h2>
+          <h2 class='manager-title'>Rooms Available Today</h2>
           <h1 class='number-rooms-available'></h1>
         </article>
         <article class='rooms-occupied'>
-          <h2>Rooms Occupied Today</h2>
+          <h2 class='manager-title'>Rooms Occupied Today</h2>
           <h1 class='percent-occupied'></h1>
         </article>
         <article class='revenue'>
-          <h2>Total Revenue Today</h2>
+          <h2 class='manager-title'>Total Revenue Today</h2>
           <h1 class='total-revenue'></h1>
         </article>
       </section>
       <section class='customer hide'>
-        <div class='bookings'>
-          <article class='past-bookings-dashboard'>
-            <h2 class='dashboard-past-bookings'>Past Bookings</h2>
-          </article>
-          <article class='todays-booking'>
-            <h2 class='dashboard-today-booking'>Today's Booking</h2>
-          </article>
-          <article class='future-bookings-dashboard'>
-            <h2 class='dashboard-future-bookings'>Future Bookings</h2>
-          </article>
-        </div>
+        <article class='past-bookings-dashboard'>
+          <h2 class='dashboard-past-bookings'>Past Bookings</h2>
+        </article>
+        <article class='todays-booking'>
+          <h2 class='dashboard-today-booking'>Today's Booking</h2>
+        </article>
+        <article class='future-bookings-dashboard'>
+          <h2 class='dashboard-future-bookings'>Future Bookings</h2>
+        </article>
         <article class='bookings-cost'>
-          <h2>Total Amount Spent on Rooms</h2>
+          <h2 class='dashboard-amount-spent'>Total Amount Spent on Rooms</h2>
           <h1 class='customer-amount-spent'></h1>
         </article>
       </section>
