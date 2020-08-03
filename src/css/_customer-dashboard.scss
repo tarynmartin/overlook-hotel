@@ -6,6 +6,7 @@
 }
 
 .bookings {
+  box-sizing: border-box;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin-left: 2vw;
@@ -13,11 +14,17 @@
   width: 97%;
   margin-top: 2vw;
   text-align: center;
+  height: 40%;
+  overflow: scroll;
 }
 
 .bookings-cost {
+  box-sizing: border-box;
   background-color: $header;
   width: 30vw;
   margin-top: 2vw;
   text-align: center;
+  height: 40%;
+  overflow: scroll;
 }
+

@@ -12,6 +12,7 @@
 .rooms-available,
 .rooms-occupied,
 .revenue {
+  box-sizing: border-box;
   background-color: $header;
   width: 30vw;
   margin-top: 2vw;

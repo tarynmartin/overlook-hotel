@@ -5,6 +5,10 @@
   background-color: $header;
 }
 
+.change-height {
+  height: 8vw;
+}
+
 .hotel-name {
   margin: 0 2vw;
 }
@@ -13,6 +17,16 @@
   display: grid;
   grid-template-rows: repeat(2, 1fr);
   justify-content: flex-end;
+}
+
+.name-display {
+  grid-area: none;
+}
+
+.displayed-name {
+  text-align: right;
+  color: $primary-background;
+  margin: 6vw 1.5vw;
 }
 
 .search,
