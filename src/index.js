@@ -25,9 +25,13 @@ let userName;
 let password;
 let currentDate = moment().format('YYYY/MM/DD');
 
+const navBar = document.querySelector(".top-bar");
 const submitBtn = document.querySelector(".psw-submit");
 const userNameInput = document.querySelector(".username");
 const passwordInput = document.querySelector(".password");
+const signInSection = document.querySelector('.sign-in');
+const nameDisplay = document.querySelector('.name-display');
+//const displayedName = document.querySelector('.displayed-name');
 const searchBar = document.querySelector(".search-bar");
 const makeBookingBar = document.querySelector(".select-date");
 const managerDashboard = document.querySelector(".manager");
@@ -104,14 +108,24 @@ function showManagerDashboard() {
   user.calculateAmountSpent(currentDate, allBookings, rooms);
   manager.availableRooms();
   manager.percentUnavailable();
+  navBar.classList.add("change-height");
+  signInSection.classList.add("hide");
+  nameDisplay.classList.remove("hide");
   searchBar.classList.remove('hide');
   managerDashboard.classList.remove('hide');
+  nameDisplay.insertAdjacentHTML('afterend', `<h2 class='displayed-name'>Hi Manager!</h2>`);
   totalRoomsAvailableToday.innerText = manager.numberOfAvailableRooms;
   percentRoomsOccupiedToday.innerText = `${manager.percentageUnavailable}%`;
   totalRevenueToday.innerText = `$${user.totalRevenue}`;
 }
 
 function showCustomerDashboard() {
+  navBar.classList.add("change-height");
+  signInSection.classList.add("hide");
+  nameDisplay.classList.remove("hide");
+  console.log(customer.name);
+  nameDisplay.insertAdjacentHTML(
+    "afterend",`<h2 class='displayed-name'>Hi ${customer.name}!</h2>`);
   makeBookingBar.classList.remove('hide');
   customerDashboard.classList.remove('hide');
   displayCustomersPastBookings();
