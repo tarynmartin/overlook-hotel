@@ -30,7 +30,7 @@ class Customer extends User {
           acc += room.costPerNight;
         }
       })
-      this.totalSpent = acc;
+      this.totalSpent = acc.toFixed(2);
       return acc;
     }, 0)
   }
