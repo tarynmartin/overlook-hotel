@@ -43,6 +43,41 @@
     align-items: center;
   }
 
+  .customer {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: 1fr;
+    margin: 2.5vw;
+    align-items: center;
+  }
+
+  .past-bookings-dashboard,
+  .todays-booking,
+  .future-bookings-dashboard,
+  .bookings-cost {
+    width: 95%;
+    height: 250px;
+  }
+
+  .bookings-cost {
+    margin-right: 0;
+  }
+
+  .dashboard-past-bookings,
+  .dashboard-today-booking,
+  .dashboard-future-bookings,
+  .dashboard-amount-spent {
+    font-size: 6vw;
+  }
+
+  .display-history {
+    font-size: 4vw;
+  }
+
+  .customer-amount-spent {
+    font-size: 9vw;
+  }
+
   .search-styling {
     padding: 2vw 0;
   }
@@ -50,11 +85,15 @@
   .psw-submit {
     margin-top: 3%;
   }
+
+  .filter-date {
+    margin: 2.5vw 2vw;
+  }
 }
 
 @media screen and (max-width: 700px) {
   header {
-    height: 17vw;
+    height: 18vw;
     background-color: $header;
   }
 
@@ -63,6 +102,7 @@
     margin-left: 5%;
   }
 
+  .select-date,
   .search {
     margin: 2.5vw 2vw;
     height: 3vw;
