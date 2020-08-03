@@ -21,7 +21,25 @@ class Customer extends User {
           this.pastBookings.push(booking);
         }
       }
+      this.sortBookings('past');
+      this.sortBookings('future');
     })
+  }
+  sortBookings(timePeriod) {
+    if (timePeriod === 'future') {
+      this.futureBookings.sort((a, b) => {
+        let aDate = new Date(a.date);
+        let bDate = new Date(b.date);
+        return bDate.getTime() - aDate.getTime();
+      });
+    } else if (timePeriod === 'past') {
+      this.pastBookings.sort((a, b) => {
+        let aDate = new Date(a.date);
+        let bDate = new Date(b.date);
+        return aDate.getTime() - bDate.getTime();
+      });
+    }
+
   }
   spendingByCustomer(rooms) {
     rooms.reduce((acc, room) => {

@@ -34,9 +34,9 @@ describe('Customer', function () {
       { "id": "5fwrgu4i7k55hl6t8", "userID": 1, "date": "2020/01/25", "roomNumber": 12, "roomServiceCharges": [] },
       { "id": "5fwrgu4i7k55hl6t7", "userID": 1, "date": "2020/01/24", "roomNumber": 7, "roomServiceCharges": [] }];
     futureBookingsExample = [
-      { "id": "5fwrgu4i7k55hl6sz", "userID": 1, "date": "2020/04/22", "roomNumber": 15, "roomServiceCharges": [] },
-      { "id": "5fwrgu4i7k55hl6t5", "userID": 1, "date": "2020/04/24", "roomNumber": 24, "roomServiceCharges": [] },
-      { "id": "5fwrgu4i7k55hl6tf", "userID": 1, "date": "2020/04/25", "roomNumber": 2, "roomServiceCharges": [] },
+      { "id": "5fwrgu4i7k55hl6sz", "userID": 1, "date": "2020/04/24", "roomNumber": 15, "roomServiceCharges": [] },
+      { "id": "5fwrgu4i7k55hl6t5", "userID": 1, "date": "2020/04/25", "roomNumber": 24, "roomServiceCharges": [] },
+      { "id": "5fwrgu4i7k55hl6tf", "userID": 1, "date": "2020/04/22", "roomNumber": 2, "roomServiceCharges": [] },
       { "id": "5fwrgu4i7k55hl6t8", "userID": 1, "date": "2020/01/25", "roomNumber": 12, "roomServiceCharges": [] },
       { "id": "5fwrgu4i7k55hl6t7", "userID": 20, "date": "2020/03/25", "roomNumber": 7, "roomServiceCharges": [] }];
     sadPathBookings = [
@@ -83,15 +83,57 @@ describe('Customer', function () {
     customer2.checkUserType('customer1', '2020/01/25', pastBookingsExample, rooms);
     customer2.findBookings(pastBookingsExample, 1);
 
-    expect(customer2.pastBookings).to.deep.equal([{ "id": "5fwrgu4i7k55hl6sz", "userID": 1, "date": "2020/01/21", "roomNumber": 15, "roomServiceCharges": [] }, { "id": "5fwrgu4i7k55hl6t5", "userID": 1, "date": "2020/01/22", "roomNumber": 24, "roomServiceCharges": [] }, { "id": "5fwrgu4i7k55hl6t7", "userID": 1, "date": "2020/01/24", "roomNumber": 7, "roomServiceCharges": [] }]);
+    expect(customer2.pastBookings).to.deep.equal([
+      {
+        id: "5fwrgu4i7k55hl6sz",
+        userID: 1,
+        date: "2020/01/21",
+        roomNumber: 15,
+        roomServiceCharges: [],
+      },
+      {
+        id: "5fwrgu4i7k55hl6t5",
+        userID: 1,
+        date: "2020/01/22",
+        roomNumber: 24,
+        roomServiceCharges: [],
+      },
+      {
+        id: "5fwrgu4i7k55hl6t7",
+        userID: 1,
+        date: "2020/01/24",
+        roomNumber: 7,
+        roomServiceCharges: [],
+      },
+    ]);
   });
   it('should be able to find if a user has future bookings', function () {
     customer3.checkUserType('customer1', '2020/01/25', futureBookingsExample, rooms);
     customer3.findBookings(futureBookingsExample, 1);
 
-    expect(customer3.futureBookings).to.deep.equal([{ "id": "5fwrgu4i7k55hl6sz", "userID": 1, "date": "2020/04/22", "roomNumber": 15, "roomServiceCharges": [] },
-      { "id": "5fwrgu4i7k55hl6t5", "userID": 1, "date": "2020/04/24", "roomNumber": 24, "roomServiceCharges": [] },
-      { "id": "5fwrgu4i7k55hl6tf", "userID": 1, "date": "2020/04/25", "roomNumber": 2, "roomServiceCharges": [] }]);
+    expect(customer3.futureBookings).to.deep.equal([
+      {
+        id: "5fwrgu4i7k55hl6t5",
+        userID: 1,
+        date: "2020/04/25",
+        roomNumber: 24,
+        roomServiceCharges: [],
+      },
+      {
+        id: "5fwrgu4i7k55hl6sz",
+        userID: 1,
+        date: "2020/04/24",
+        roomNumber: 15,
+        roomServiceCharges: [],
+      },
+      {
+        id: "5fwrgu4i7k55hl6tf",
+        userID: 1,
+        date: "2020/04/22",
+        roomNumber: 2,
+        roomServiceCharges: [],
+      },
+    ]);
   });
   it('should be able to sort bookings by user', function () {
     customer4.checkUserType('customer1', '2020/01/25', sadPathBookings, rooms);
@@ -107,6 +149,66 @@ describe('Customer', function () {
     customer2.findBookings(pastBookingsExample, 1);
     customer2.spendingByCustomer(rooms);
 
-    expect(customer2.totalSpent).to.equal(853.26);
-  })
+    expect(customer2.totalSpent).to.equal('853.26');
+  });
+  it("should be able to sort past bookings from latest to earliest", function () {
+    customer2.pastBookings = [];
+    customer2.checkUserType("customer1", "2020/01/25", pastBookingsExample, rooms);
+    customer2.findBookings(pastBookingsExample, 1);
+
+    expect(customer2.pastBookings).to.deep.equal([
+      {
+        id: "5fwrgu4i7k55hl6sz",
+        userID: 1,
+        date: "2020/01/21",
+        roomNumber: 15,
+        roomServiceCharges: [],
+      },
+      {
+        id: "5fwrgu4i7k55hl6t5",
+        userID: 1,
+        date: "2020/01/22",
+        roomNumber: 24,
+        roomServiceCharges: [],
+      },
+      {
+        id: "5fwrgu4i7k55hl6t7",
+        userID: 1,
+        date: "2020/01/24",
+        roomNumber: 7,
+        roomServiceCharges: [],
+      },
+    ]);
+  });
+  it("should be able to sort future bookings from nearest to latest",
+    function () {
+      customer3.futureBookings = [];
+      customer3.checkUserType("customer1", "2020/01/25", futureBookingsExample,
+      rooms);
+      customer3.findBookings(futureBookingsExample, 1);
+
+      expect(customer3.futureBookings).to.deep.equal([
+        {
+          id: "5fwrgu4i7k55hl6t5",
+          userID: 1,
+          date: "2020/04/25",
+          roomNumber: 24,
+          roomServiceCharges: [],
+        },
+        {
+          id: "5fwrgu4i7k55hl6sz",
+          userID: 1,
+          date: "2020/04/24",
+          roomNumber: 15,
+          roomServiceCharges: [],
+        },
+        {
+          id: "5fwrgu4i7k55hl6tf",
+          userID: 1,
+          date: "2020/04/22",
+          roomNumber: 2,
+          roomServiceCharges: [],
+        }
+      ]);
+    })
 })
