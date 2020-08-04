@@ -66,6 +66,7 @@
   grid-template-columns: repeat(2, 1fr);
   margin: 0;
   height: 5.5vw;
+  padding-bottom: 2vh;
 }
 
 .filter-date {
@@ -80,18 +81,18 @@ label {
 }
 
 .booking-selection {
-  height: 4vh;
+  height: 35px;
   margin-top: 1vh;
 }
 
 .submit-date {
-  height: 6vh;
+  height: 35px;
   margin-top: 1vh;
   width: 15vw;
   background-color: $header;
   color: $gray;
   border: none;
-  font-size: 4vh;
+  font-size: 30px;
 }
 
 .today-date {
