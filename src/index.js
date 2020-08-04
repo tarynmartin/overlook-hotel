@@ -1,5 +1,6 @@
 import './css/base.scss';
 import './get-api.js';
+import './post-api.js';
 import './User.js';
 import './Manager.js';
 import './Customer.js';
@@ -7,13 +8,13 @@ import './Rooms.js';
 import './Bookings.js';
 import './Users.js';
 import getOnLoad from './get-api.js';
+import postNewBooking from './post-api.js';
 const moment = require('moment');
 
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
 import User from './User.js';
 import Manager from './Manager.js';
 import Customer from './Customer.js';
+import Rooms from './Rooms.js';
 
 let user;
 let manager;
@@ -21,8 +22,6 @@ let customer;
 let allBookings = [];
 let users = [];
 let rooms = [];
-let userName;
-let password;
 let currentDate = moment().format('YYYY/MM/DD');
 
 const navBar = document.querySelector(".top-bar");
@@ -40,23 +39,34 @@ const customerDashboard = document.querySelector(".customer");
 const landingPage = document.querySelector(".welcome");
 const managerSearchResults = document.querySelector(".manager-search");
 const customerMakeBooking = document.querySelector(".customer-booking");
+const availableRoomsDisplay = document.querySelector(".display-all-rooms");
 const totalRoomsAvailableToday = document.querySelector(
-  ".number-rooms-available"
-);
+  ".number-rooms-available");
 const percentRoomsOccupiedToday = document.querySelector(".percent-occupied");
 const totalRevenueToday = document.querySelector(".total-revenue");
 const customerPastBookings = document.querySelector(".dashboard-past-bookings");
 const customerTodayBooking = document.querySelector('.dashboard-today-booking');
 const customerFutureBooking = document.querySelector('.dashboard-future-bookings');
 const customerPastSpending = document.querySelector('.customer-amount-spent');
+const customerInputDate = document.querySelector('.booking-selection');
+const inputDateSubmitButton = document.querySelector('.submit-date');
+const addAvailableRoomToDisplay = document.querySelector('.add-available-rooms');
 
-submitBtn.addEventListener("click", createUser);
-userNameInput.addEventListener("input", collectUserName);
-passwordInput.addEventListener("input", collectPassword);
+
+let userName;
+let password;
+let bookingDate;
+
+submitBtn.addEventListener('click', createUser);
+userNameInput.addEventListener('input', collectUserName);
+passwordInput.addEventListener('input', collectPassword);
+customerInputDate.addEventListener('input', collectUserDate);
+inputDateSubmitButton.addEventListener('click', searchForRooms);
+availableRoomsDisplay.addEventListener('click', createBookingObject);
 
 getOnLoad().then(allData => {
   allData.users.forEach(user => {
-    users.push(user);
+    users.push(user); 
   });
   allData.rooms.forEach(room => {
     rooms.push(room);
@@ -78,6 +88,11 @@ function collectUserName(event) {
 
 function collectPassword(event) {
   password = event.target.value;
+}
+
+function collectUserDate() {
+  const collectedDate = event.target.value;
+  bookingDate = moment(collectedDate).format("YYYY/MM/DD");
 }
 
 function createUser() {
@@ -168,4 +183,97 @@ function displayCustomersFutureBookings() {
 
 function displayCustomerPastSpending() {
   customerPastSpending.innerText = `$${customer.totalSpent}`;
+}
+
+function searchForRooms() {
+  findAllBookings()
+    .then(bookingsData => {
+      let checkedTrue = checkValidDate(bookingDate);
+      let availableRooms;
+      if (checkedTrue) {
+        availableRooms = findAvailableRooms(bookingsData, bookingDate);
+      }
+      displayCustomerBookingPage(availableRooms, checkedTrue);
+    })
+}
+
+function checkValidDate(userDate) {
+  if (userDate <= currentDate || !userDate) {
+    alert(`Please select a date after ${currentDate}`)
+  } else {
+    return true;
+  }
+}
+
+function findAvailableRooms(bookings, userDate) {
+  let unavailableRooms = bookings.reduce((notAvailable, booking) => {
+    if (booking.date === userDate) {
+      notAvailable.push(booking)
+    }
+    return notAvailable;
+  }, [])
+
+  return rooms.filter(room => {
+    let roomAvailable = true;
+    unavailableRooms.forEach(booking => {
+      if (room.number === booking.roomNumber) {
+        roomAvailable = false;
+      }
+    })
+    return roomAvailable;
+  })
+}
+
+function displayCustomerBookingPage(availableRooms) {
+  customerMakeBooking.classList.remove('hide')
+  customerDashboard.classList.add("hide");
+  displayAvailableRooms(availableRooms);
+}
+
+function displayAvailableRooms(availableRooms) {
+  if (availableRooms.length === 0) {
+    alert(`We are SO SORRY! We do not have any rooms available on ${bookingDate}. Please choose another date.`)
+  } else {
+    availableRooms.forEach(room => {
+      renderAvailableRooms(room);
+    })
+  }
+}
+
+function renderAvailableRooms(room) {
+  addAvailableRoomToDisplay.insertAdjacentHTML('afterend',
+    `<article class='available-room-card'>
+    <h3>Room Type: ${room.roomType}</h3>
+    <h3 class='room-number'>Room Number: ${room.number}</h3>
+    <h3>Number of Beds: ${room.numBeds}</h3>
+    <h3>Bed Types: ${room.bedSize}</h3>
+    <h3>Has a Bidet?: ${room.bidet}</h3>
+    <h3>Price/Night: $${(room.costPerNight).toFixed(2)}</h3>
+    <button class='book-stay'>Book Now</button>
+  </article>`)
+}
+
+function createBookingObject(event) {
+  let convertRoomNumber = findNewBooking(event);
+
+  let newBooking = {
+    'userID': user.id,
+    'date': bookingDate,
+    'roomNumber': parseInt(convertRoomNumber, 10)
+  }
+  postNewBooking(newBooking);
+}
+
+function findNewBooking(event) {
+  const bookStayButton = document.querySelectorAll('.book-stay');
+  let roomNumber;
+  let convertRoomNumber
+  bookStayButton.forEach(button => {
+    if (event.target === button) {
+      console.log(event);
+      roomNumber = event.target.parentElement.children[1].textContent;
+      convertRoomNumber = roomNumber.slice(-2)
+    }
+  })
+  return convertRoomNumber;
 }
