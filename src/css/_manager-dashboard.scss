@@ -1,3 +1,4 @@
+// Main Manager Dashboard Settings //
 .manager {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -5,6 +6,7 @@
   color: $gray;
 }
 
+// Manager Dashboard //
 .rooms-available {
   margin-left: 2vw;
 }

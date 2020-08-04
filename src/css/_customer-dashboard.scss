@@ -1,9 +1,11 @@
+// Main Customer Dashboard Setting //
 .customer {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   color: $header;
 }
 
+// Customer Dashboard //
 .todays-booking {
   box-sizing: border-box;
   height: 65vh;
@@ -26,40 +28,4 @@
 .bookings-cost {
   @extend .todays-booking;
   margin-right: 2vw;
-}
-
-.available-rooms {
-  grid-column: 1 / span 3;
-  width: 90%;
-  height: 110vh;
-  overflow: scroll;
-  background-color: $header;
-  margin: 2vw;
-  text-align: center;
-}
-
-.display-all-rooms {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 1fr;
-}
-
-.add-available-rooms {
-  grid-column: 1 / span 5;
-  color: $gray;
-}
-
-.available-room-card {
-  width: 95%;
-  height: 40vh;
-  background-color: $gray;
-  color: $header;
-  overflow: scroll;
-  margin: 1%;
-}
-
-.book-stay {
-  background-color: $gray;
-  color: $header;
-  border: none;
 }

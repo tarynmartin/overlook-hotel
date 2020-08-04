@@ -1,3 +1,4 @@
+// Main Navigation Bar //
 .top-bar {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -56,6 +57,7 @@
   margin-left: 13%;
 }
 
+// Additional Customer/Manager Bars //
 .search-bar,
 .select-date {
   background-color: $header;
