@@ -1,5 +1,6 @@
 import './css/base.scss';
 import './get-api.js';
+import './post-api.js';
 import './User.js';
 import './Manager.js';
 import './Customer.js';
@@ -7,6 +8,7 @@ import './Rooms.js';
 import './Bookings.js';
 import './Users.js';
 import getOnLoad from './get-api.js';
+import postNewBooking from './post-api.js';
 const moment = require('moment');
 
 import User from './User.js';
@@ -259,7 +261,7 @@ function createBookingObject(event) {
     'date': bookingDate,
     'roomNumber': parseInt(convertRoomNumber, 10)
   }
-  return newBooking;
+  postNewBooking(newBooking);
 }
 
 function findNewBooking(event) {
