@@ -6,6 +6,7 @@
 }
 
 @media screen and (max-width: 1100px){
+  //Overall Rules//
   header {
     height: 15vw;
     background-color: $header;
@@ -15,10 +16,26 @@
     font-size: 6vw;
   }
 
+  // Nav Bar Rules //
   .manager-title {
     font-size: 6vw;
   }
 
+  .search-styling {
+    padding: 2vw 0;
+  }
+
+  .psw-submit {
+    margin-top: 3%;
+  }
+
+  .booking-selection,
+  .submit-date {
+    height: 20px;
+    font-size: 15px;
+  }
+
+  // Manager Dashboard //
   .number-rooms-available,
   .percent-occupied,
   .total-revenue {
@@ -43,6 +60,7 @@
     align-items: center;
   }
 
+  // Customer Dashboard //
   .customer {
     display: flex;
     flex-direction: column;
@@ -78,33 +96,48 @@
     font-size: 9vw;
   }
 
-  .search-styling {
-    padding: 2vw 0;
+  .add-available-rooms {
+    grid-column: 1 / span 3;
   }
 
-  .psw-submit {
-    margin-top: 3%;
-  }
-
-  .filter-date {
-    margin: 2.5vw 2vw;
+  .display-all-rooms {
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 0 2vw;
   }
 }
 
 @media screen and (max-width: 700px) {
+  // Overall Rules //
   header {
     height: 18vw;
     background-color: $header;
   }
 
+  // Nav Bar Rules //
+  .search, 
   .psw-submit {
     font-size: 2vw;
     margin-left: 5%;
   }
 
-  .select-date,
-  .search {
-    margin: 2.5vw 2vw;
-    height: 3vw;
+  .submit-date {
+    font-size: 2vh;
+    margin-top: 0;
+  }
+  // Customer Booking Rules //
+  .customer {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .add-available-rooms {
+    grid-column: 1 / span 2;
+  }
+  
+  .display-all-rooms {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(13, 1fr);
+    padding: 0 2vw;
+    height: 20vh;
   }
 }
