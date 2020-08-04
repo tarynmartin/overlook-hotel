@@ -52,7 +52,7 @@ describe('Bookings', function () {
   it('should be able to collect all available rooms for a date', function () {
     bookings.checkAvailability("2020/01/24", bookingsArray, rooms)
 
-    expect(bookings.availableRooms).to.deep.equal([{ "id": "5fwrgu4i7k55hl6sz", "userID": 9, "date": "2020/04/22", "roomNumber": 5, "roomServiceCharges": [] },{ "id": "5fwrgu4i7k55hl6tf", "userID": 36, "date": "2020/01/25", "roomNumber": 2, "roomServiceCharges": [] }, { "id": "5fwrgu4i7k55hl6t8", "userID": 1, "date": "2020/01/25", "roomNumber": 4, "roomServiceCharges": [] }, { "id": "5fwrgu4i7k55hl6t7", "userID": 20, "date": "2020/01/25", "roomNumber": 6, "roomServiceCharges": [] }]);
+    expect(bookings.availableRooms).to.deep.equal([{ "id": "5fwrgu4i7k55hl6sz", "userID": 9, "date": "2020/04/22", "roomNumber": 5, "roomServiceCharges": [] }, { "id": "5fwrgu4i7k55hl6tf", "userID": 36, "date": "2020/01/25", "roomNumber": 2, "roomServiceCharges": [] }, { "id": "5fwrgu4i7k55hl6t8", "userID": 1, "date": "2020/01/25", "roomNumber": 4, "roomServiceCharges": [] }, { "id": "5fwrgu4i7k55hl6t7", "userID": 20, "date": "2020/01/25", "roomNumber": 6, "roomServiceCharges": [] }]);
   });
   it('should be able to track how many rooms are unavailable on a certain date', function () {
     bookings.checkAvailability("2020/01/24", bookingsArray, rooms)

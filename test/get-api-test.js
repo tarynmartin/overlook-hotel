@@ -13,9 +13,6 @@ describe("Fetch", function () {
       then: () => {
         return fetchResponse;
       },
-      then: () => {
-        return fetchResponse;
-      },
       catch: () => {
         return fetchResponse;
       },

@@ -4,16 +4,11 @@ import User from '../src/User.js';
 describe('User', function () {
   let user1;
   let user2;
-  let users;
   let rooms;
   let bookings;
   beforeEach(() => {
     user1 = new User("2020/01/25", 'customer1');
     user2 = new User("2020/01/25", 'manager');
-    users = [
-      { "id": 1, "name": "Leatha Ullrich" }, 
-      { "id": 2, "name": "Rocio Schuster" }, 
-      { "id": 3, "name": "Kelvin Schiller" }];
     bookings = [
       { "id": "5fwrgu4i7k55hl6sz", "userID": 9, "date": "2020/04/22", "roomNumber": 15, "roomServiceCharges": [] }, 
       { "id": "5fwrgu4i7k55hl6t5", "userID": 43, "date": "2020/01/24", "roomNumber": 24, "roomServiceCharges": [] }, 
