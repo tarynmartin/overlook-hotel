@@ -14,6 +14,7 @@ import './images/turing-logo.png'
 import User from './User.js';
 import Manager from './Manager.js';
 import Customer from './Customer.js';
+import Rooms from './Rooms.js';
 
 let user;
 let manager;
@@ -67,8 +68,9 @@ function collectUserDate() {
 function searchForRooms() {
   findAllBookings()
     .then(bookingsData => {
+      let allRooms = new Rooms();
       let availableRooms = findAvailableRooms(bookingsData, bookingDate);
-      let availableRoomsObject = rooms.sortAllRooms(availableRooms);
+      console.log(availableRooms);
       displayCustomerBookingPage(availableRoomsObject);
     })
   // display on user screen with option to select to make a booking
@@ -81,10 +83,7 @@ function displayCustomerBookingPage(availableRooms) {
 }
 
 function displayAvailableRooms(availableRooms) {
-  if (availableRooms.residentialSuites.length === 0 &&
-    availableRooms.suites.length === 0 &&
-    availableRooms.juniorSuites.length === 0 &&
-    availableRooms.singleRooms.length === 0) {
+  if (availableRooms.lenght === 0) {
       alert(`We are SO SORRY! We do not have any rooms available on ${bookingDate}. Please choose another date.`)
     }
     if (availableRooms.residentialSuites.length > 0) {
