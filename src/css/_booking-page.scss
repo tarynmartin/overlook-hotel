@@ -1,15 +1,40 @@
+// Customer Make Bookings Dashboard //
 .customer-booking {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  color: $primary-background;
-  margin: 2vw;
+  margin-left: 5vw;
 }
 
-.available-rooms,
-.room-cost,
-.book-room {
+.display-all-rooms {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding-left: .6vw;
+}
+
+.available-rooms {
+  width: 90%;
+  height: 110vh;
+  overflow: scroll;
   background-color: $header;
-  width: 100%;
-  margin-top: 2vw;
+  margin: 2vw;
   text-align: center;
+  margin-top: 3vw;
+}
+
+.add-available-rooms {
+  grid-column: 1 / span 5;
+  color: $gray;
+}
+
+.available-room-card {
+  width: 95%;
+  height: 40vh;
+  background-color: $gray;
+  color: $header;
+  overflow: scroll;
+  margin: 1%;
+}
+
+.book-stay {
+  background-color: $gray;
+  color: $header;
+  border: none;
 }

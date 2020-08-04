@@ -3,6 +3,7 @@ const expect = chai.expect
 const spies = require('chai-spies');
 import '../src/indexClass.js';
 import Index from '../src/indexClass.js';
+chai.use(spies);
 
 describe('Index', function() {
   beforeEach(() => {

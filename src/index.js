@@ -14,7 +14,7 @@ const moment = require('moment');
 import User from './User.js';
 import Manager from './Manager.js';
 import Customer from './Customer.js';
-import Rooms from './Rooms.js';
+//import Rooms from './Rooms.js';
 
 let user;
 let manager;
@@ -37,7 +37,7 @@ const makeBookingBar = document.querySelector(".select-date");
 const managerDashboard = document.querySelector(".manager");
 const customerDashboard = document.querySelector(".customer");
 const landingPage = document.querySelector(".welcome");
-const managerSearchResults = document.querySelector(".manager-search");
+//const managerSearchResults = document.querySelector(".manager-search");
 const customerMakeBooking = document.querySelector(".customer-booking");
 const availableRoomsDisplay = document.querySelector(".display-all-rooms");
 const totalRoomsAvailableToday = document.querySelector(
@@ -83,7 +83,7 @@ function findAllBookings() {
 }
 
 function collectUserName(event) {
-  userName= event.target.value;
+  userName = event.target.value;
 }
 
 function collectPassword(event) {
@@ -142,7 +142,7 @@ function showCustomerDashboard() {
   nameDisplay.classList.remove("hide");
   displayDateCustomer.innerText = currentDate;
   nameDisplay.insertAdjacentHTML(
-    "afterend",`<h2 class='displayed-name'>Hi ${customer.name}!</h2>`);
+    "afterend", `<h2 class='displayed-name'>Hi ${customer.name}!</h2>`);
   makeBookingBar.classList.remove('hide');
   customerDashboard.classList.remove('hide');
   displayCustomersPastBookings();
@@ -166,7 +166,7 @@ function displayCustomersBookingToday() {
     customerTodayBooking.insertAdjacentHTML("afterend", `<h5 class='display-history'>You don't have a stay booked with us today!</h5>`);
   } else {
     customer.todaysBooking.forEach(booking => {
-      customerTodayBooking.insertAdjacentHTML("afterend",`<h5 class='display-history'>You are staying in room ${booking.roomNumber} tonight.</h5>`);
+      customerTodayBooking.insertAdjacentHTML("afterend", `<h5 class='display-history'>You are staying in room ${booking.roomNumber} tonight.</h5>`);
     })
   }
 }
@@ -176,7 +176,7 @@ function displayCustomersFutureBookings() {
     customerFutureBooking.insertAdjacentHTML("afterend", `<h5 class='display-history'>You don't have any stays planned in the future. We hope to see you soon!</h5>`);
   } else {
     customer.futureBookings.forEach(booking => {
-      customerFutureBooking.insertAdjacentHTML("afterend",`<h5 class='display-history'>You will be staying in room ${booking.roomNumber} on ${booking.date}</h5>`);
+      customerFutureBooking.insertAdjacentHTML("afterend", `<h5 class='display-history'>You will be staying in room ${booking.roomNumber} on ${booking.date}</h5>`);
     })
   }
 }

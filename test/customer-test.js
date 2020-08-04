@@ -184,7 +184,7 @@ describe('Customer', function () {
     function () {
       customer3.futureBookings = [];
       customer3.checkUserType("customer1", "2020/01/25", futureBookingsExample,
-      rooms);
+        rooms);
       customer3.findBookings(futureBookingsExample, 1);
 
       expect(customer3.futureBookings).to.deep.equal([

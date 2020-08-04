@@ -1,10 +1,12 @@
+// Main Manager Dashboard Settings //
 .manager {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 2vw;
-  color: $gray;
+  color: $header;
 }
 
+// Manager Dashboard //
 .rooms-available {
   margin-left: 2vw;
 }
@@ -13,7 +15,7 @@
 .rooms-occupied,
 .revenue {
   box-sizing: border-box;
-  background-color: $header;
+  background-color: $gray;;
   width: 30vw;
   margin-top: 2vw;
   text-align: center;
