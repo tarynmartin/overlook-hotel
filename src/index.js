@@ -22,9 +22,6 @@ let customer;
 let allBookings = [];
 let users = [];
 let rooms = [];
-let userName;
-let password;
-let bookingDate;
 let currentDate = moment().format('YYYY/MM/DD');
 
 const navBar = document.querySelector(".top-bar");
@@ -54,85 +51,15 @@ const customerInputDate = document.querySelector('.booking-selection');
 const inputDateSubmitButton = document.querySelector('.submit-date');
 const addAvailableRoomToDisplay = document.querySelector('.add-available-rooms');
 
+let userName;
+let password;
+let bookingDate;
+
 submitBtn.addEventListener("click", createUser);
 userNameInput.addEventListener("input", collectUserName);
 passwordInput.addEventListener("input", collectPassword);
 customerInputDate.addEventListener('input', collectUserDate);
 inputDateSubmitButton.addEventListener('click', searchForRooms);
-
-function collectUserDate() {
-  const collectedDate = event.target.value;
-  bookingDate = moment(collectedDate).format("YYYY/MM/DD");
-}
-
-function searchForRooms() {
-  findAllBookings()
-    .then(bookingsData => {
-      let checkedTrue = checkValidDate(bookingDate);
-      let availableRooms;
-      if (checkedTrue) {
-        availableRooms = findAvailableRooms(bookingsData, bookingDate);
-      }
-      console.log(availableRooms);
-      displayCustomerBookingPage(availableRooms);
-    })
-  // display on user screen with option to select to make a booking
-}
-
-function displayCustomerBookingPage(availableRooms) {
-  customerMakeBooking.classList.remove('hide')
-  customerDashboard.classList.add("hide");
-  displayAvailableRooms(availableRooms);
-}
-
-function displayAvailableRooms(availableRooms) {
-  if (availableRooms.length === 0) {
-    alert(`We are SO SORRY! We do not have any rooms available on ${bookingDate}. Please choose another date.`)
-  } else {
-    availableRooms.forEach(room => {
-      renderAvailableRooms(room);
-    })
-  }  
-}
-
-function renderAvailableRooms(room) {
-  addAvailableRoomToDisplay.insertAdjacentHTML('afterend', 
-  `<article class='available-room-card'>
-    <h3>Room Type: ${room.roomType}</h3>
-    <h3>Number of Beds: ${room.numBeds}</h3>
-    <h3>Bed Types: ${room.bedSize}</h3>
-    <h3>Has a Bidet?: ${room.bidet}</h3>
-    <h3>Price/Night: $${(room.costPerNight).toFixed(2)}</h3>
-    <button class='book-stay'>Book Now</button>
-  </article>`)
-}
-
-function checkValidDate(userDate) {
-  if (userDate < currentDate) {
-    alert(`Please select a date after ${currentDate}`);
-  } else {
-    return true;
-  }
-}
-
-function findAvailableRooms(bookings, userDate) {
-  let unavailableRooms = bookings.reduce((notAvailable, booking) => {
-    if (booking.date === userDate) {
-      notAvailable.push(booking)
-    }
-    return notAvailable;
-  }, [])
-
-  return rooms.filter(room => {
-    let roomAvailable = true;
-    unavailableRooms.forEach(booking => {
-      if (room.number === booking.roomNumber) {
-        roomAvailable = false;
-      }
-    })
-    return roomAvailable;
-  })
-}
 
 getOnLoad().then(allData => {
   allData.users.forEach(user => {
@@ -158,6 +85,11 @@ function collectUserName(event) {
 
 function collectPassword(event) {
   password = event.target.value;
+}
+
+function collectUserDate() {
+  const collectedDate = event.target.value;
+  bookingDate = moment(collectedDate).format("YYYY/MM/DD");
 }
 
 function createUser() {
@@ -248,4 +180,71 @@ function displayCustomersFutureBookings() {
 
 function displayCustomerPastSpending() {
   customerPastSpending.innerText = `$${customer.totalSpent}`;
+}
+
+function searchForRooms() {
+  findAllBookings()
+    .then(bookingsData => {
+      let checkedTrue = checkValidDate(bookingDate);
+      let availableRooms;
+      if (checkedTrue) {
+        availableRooms = findAvailableRooms(bookingsData, bookingDate);
+      }
+      displayCustomerBookingPage(availableRooms, checkedTrue);
+    })
+}
+
+function checkValidDate(userDate) {
+  if (userDate <= currentDate || !userDate) {
+    alert(`Please select a date after ${currentDate}`)
+  } else {
+    return true;
+  }
+}
+
+function findAvailableRooms(bookings, userDate) {
+  let unavailableRooms = bookings.reduce((notAvailable, booking) => {
+    if (booking.date === userDate) {
+      notAvailable.push(booking)
+    }
+    return notAvailable;
+  }, [])
+
+  return rooms.filter(room => {
+    let roomAvailable = true;
+    unavailableRooms.forEach(booking => {
+      if (room.number === booking.roomNumber) {
+        roomAvailable = false;
+      }
+    })
+    return roomAvailable;
+  })
+}
+
+function displayCustomerBookingPage(availableRooms) {
+  customerMakeBooking.classList.remove('hide')
+  customerDashboard.classList.add("hide");
+  displayAvailableRooms(availableRooms);
+}
+
+function displayAvailableRooms(availableRooms) {
+  if (availableRooms.length === 0) {
+    alert(`We are SO SORRY! We do not have any rooms available on ${bookingDate}. Please choose another date.`)
+  } else {
+    availableRooms.forEach(room => {
+      renderAvailableRooms(room);
+    })
+  }
+}
+
+function renderAvailableRooms(room) {
+  addAvailableRoomToDisplay.insertAdjacentHTML('afterend',
+    `<article class='available-room-card'>
+    <h3>Room Type: ${room.roomType}</h3>
+    <h3>Number of Beds: ${room.numBeds}</h3>
+    <h3>Bed Types: ${room.bedSize}</h3>
+    <h3>Has a Bidet?: ${room.bidet}</h3>
+    <h3>Price/Night: $${(room.costPerNight).toFixed(2)}</h3>
+    <button class='book-stay'>Book Now</button>
+  </article>`)
 }
