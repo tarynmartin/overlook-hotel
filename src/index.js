@@ -68,7 +68,11 @@ function collectUserDate() {
 function searchForRooms() {
   findAllBookings()
     .then(bookingsData => {
-      let availableRooms = findAvailableRooms(bookingsData, bookingDate);
+      let checkedTrue = checkValidDate(bookingDate);
+      let availableRooms;
+      if (checkedTrue) {
+        availableRooms = findAvailableRooms(bookingsData, bookingDate);
+      }
       console.log(availableRooms);
       displayCustomerBookingPage(availableRooms);
     })
@@ -101,6 +105,14 @@ function renderAvailableRooms(room) {
     <h3>Price/Night: $${(room.costPerNight).toFixed(2)}</h3>
     <button class='book-stay'>Book Now</button>
   </article>`)
+}
+
+function checkValidDate(userDate) {
+  if (userDate < currentDate) {
+    alert(`Please select a date after ${currentDate}`);
+  } else {
+    return true;
+  }
 }
 
 function findAvailableRooms(bookings, userDate) {
