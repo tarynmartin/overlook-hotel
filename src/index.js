@@ -68,10 +68,9 @@ function collectUserDate() {
 function searchForRooms() {
   findAllBookings()
     .then(bookingsData => {
-      let allRooms = new Rooms();
       let availableRooms = findAvailableRooms(bookingsData, bookingDate);
       console.log(availableRooms);
-      displayCustomerBookingPage(availableRoomsObject);
+      displayCustomerBookingPage(availableRooms);
     })
   // display on user screen with option to select to make a booking
 }
@@ -83,21 +82,13 @@ function displayCustomerBookingPage(availableRooms) {
 }
 
 function displayAvailableRooms(availableRooms) {
-  if (availableRooms.lenght === 0) {
-      alert(`We are SO SORRY! We do not have any rooms available on ${bookingDate}. Please choose another date.`)
-    }
-    if (availableRooms.residentialSuites.length > 0) {
-      availableRooms.forEach(room => renderAvailableRooms(room));
-    }
-  if (availableRooms.suites.length > 0) {
-    availableRooms.forEach((room) => renderAvailableRooms(room));
-  }
-  if (availableRooms.singleRooms.length > 0) {
-    availableRooms.forEach((room) => renderAvailableRooms(room));
-  }
-  if (availableRooms.juniorSuites.length > 0) {
-    availableRooms.forEach((room) => renderAvailableRooms(room));
-  }
+  if (availableRooms.length === 0) {
+    alert(`We are SO SORRY! We do not have any rooms available on ${bookingDate}. Please choose another date.`)
+  } else {
+    availableRooms.forEach(room => {
+      renderAvailableRooms(room);
+    })
+  }  
 }
 
 function renderAvailableRooms(room) {
