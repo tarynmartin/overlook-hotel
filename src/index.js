@@ -9,8 +9,6 @@ import './Users.js';
 import getOnLoad from './get-api.js';
 const moment = require('moment');
 
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
 import User from './User.js';
 import Manager from './Manager.js';
 import Customer from './Customer.js';
@@ -39,6 +37,7 @@ const customerDashboard = document.querySelector(".customer");
 const landingPage = document.querySelector(".welcome");
 const managerSearchResults = document.querySelector(".manager-search");
 const customerMakeBooking = document.querySelector(".customer-booking");
+const availableRoomsDisplay = document.querySelector(".display-all-rooms");
 const totalRoomsAvailableToday = document.querySelector(
   ".number-rooms-available");
 const percentRoomsOccupiedToday = document.querySelector(".percent-occupied");
@@ -51,19 +50,21 @@ const customerInputDate = document.querySelector('.booking-selection');
 const inputDateSubmitButton = document.querySelector('.submit-date');
 const addAvailableRoomToDisplay = document.querySelector('.add-available-rooms');
 
+
 let userName;
 let password;
 let bookingDate;
 
-submitBtn.addEventListener("click", createUser);
-userNameInput.addEventListener("input", collectUserName);
-passwordInput.addEventListener("input", collectPassword);
+submitBtn.addEventListener('click', createUser);
+userNameInput.addEventListener('input', collectUserName);
+passwordInput.addEventListener('input', collectPassword);
 customerInputDate.addEventListener('input', collectUserDate);
 inputDateSubmitButton.addEventListener('click', searchForRooms);
+availableRoomsDisplay.addEventListener('click', createBookingObject);
 
 getOnLoad().then(allData => {
   allData.users.forEach(user => {
-    users.push(user);
+    users.push(user); 
   });
   allData.rooms.forEach(room => {
     rooms.push(room);
@@ -241,10 +242,36 @@ function renderAvailableRooms(room) {
   addAvailableRoomToDisplay.insertAdjacentHTML('afterend',
     `<article class='available-room-card'>
     <h3>Room Type: ${room.roomType}</h3>
+    <h3 class='room-number'>Room Number: ${room.number}</h3>
     <h3>Number of Beds: ${room.numBeds}</h3>
     <h3>Bed Types: ${room.bedSize}</h3>
     <h3>Has a Bidet?: ${room.bidet}</h3>
     <h3>Price/Night: $${(room.costPerNight).toFixed(2)}</h3>
     <button class='book-stay'>Book Now</button>
   </article>`)
+}
+
+function createBookingObject(event) {
+  let convertRoomNumber = findNewBooking(event);
+
+  let newBooking = {
+    'userID': user.id,
+    'date': bookingDate,
+    'roomNumber': parseInt(convertRoomNumber, 10)
+  }
+  return newBooking;
+}
+
+function findNewBooking(event) {
+  const bookStayButton = document.querySelectorAll('.book-stay');
+  let roomNumber;
+  let convertRoomNumber
+  bookStayButton.forEach(button => {
+    if (event.target === button) {
+      console.log(event);
+      roomNumber = event.target.parentElement.children[1].textContent;
+      convertRoomNumber = roomNumber.slice(-2)
+    }
+  })
+  return convertRoomNumber;
 }
