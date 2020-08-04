@@ -74,21 +74,22 @@
 
 label {
   font-size: 2vw;
+  padding-top: .7vw;
 }
 
 .booking-selection {
-  height: 5vh;
-  margin-top: 2vh;
+  height: 4vh;
+  margin-top: 1vh;
 }
 
 .submit-date {
   height: 6vh;
-  margin-top: 2vh;
-  width: 8vw;
+  margin-top: 1vh;
+  width: 15vw;
   background-color: $header;
   color: $gray;
   border: none;
-  font-size: 4.8vh;
+  font-size: 4vh;
 }
 
 .today-date {
