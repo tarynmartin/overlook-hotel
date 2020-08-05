@@ -6,9 +6,9 @@ We had to create a website that has both customer and manager view, collects and
 
 ### GIF's of Application
 
-![manager dashboard view with demonstrated responsiveness](assets/manager-responsiveness.gif)
+![manager dashboard view with demonstrated responsiveness](/assets/manager-responsiveness.gif)
 
-![customer dashboard view with demonstrated responsiveness](assets/customer-responsiveness.gif)
+![customer dashboard view with demonstrated responsiveness](/assets/customer-responsiveness.gif)
 
 ### SetUp
 To view this application at [github project](https://github.com/bjjdestroyer/overlook-hotel).
@@ -45,16 +45,3 @@ View the Turing schools, [Project Spec](https://frontend.turing.io/projects/over
 GitHub [Project Board](https://github.com/bjjdestroyer/overlook-hotel/projects/1)
 ### Acknowledgements
 Heather Faerber mentored and provided feedback for the project.
-
-
-## Linting Your Code
-
-Run the command in your terminal `npm run lint` to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit - the linter is still running successfully.
-
-Your linter will look at the JavaScript files you have within the `src` directory and the `test` directory. 
-
-_If you are finished with the functionality and testing of your project_, then you can consider deploying your project to the web! This way anyone can play it without cloning down your repo.
-
-[GitHub Pages](https://pages.github.com/) is a great way to deploy your project to the web. Don't worry about this until your project is free of bugs and well tested!
-
-If you _are_ done, you can follow [this procedure](./gh-pages-procedure.md) to get your project live on GitHub Pages.
