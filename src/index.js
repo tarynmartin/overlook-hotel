@@ -249,7 +249,7 @@ function renderAvailableRooms(room) {
     <h3>Bed Types: ${room.bedSize}</h3>
     <h3>Has a Bidet?: ${room.bidet}</h3>
     <h3>Price/Night: $${(room.costPerNight).toFixed(2)}</h3>
-    <button class='book-stay'>Book Now</button>
+    <button class='book-stay'>Book</button>
   </article>`)
 }
 

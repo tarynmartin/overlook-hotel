@@ -5,7 +5,7 @@
 
 .display-all-rooms {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   padding-left: .6vw;
 }
 
@@ -17,24 +17,29 @@
   margin: 2vw;
   text-align: center;
   margin-top: 3vw;
+  box-shadow: 2px 2px 6px #3a1836;
+  border-radius: 10px;
 }
 
 .add-available-rooms {
-  grid-column: 1 / span 5;
+  grid-column: 1 / span 4;
   color: $gray;
 }
 
 .available-room-card {
   width: 95%;
-  height: 40vh;
+  height: 45vh;
   background-color: $gray;
   color: $header;
   overflow: scroll;
-  margin: 1%;
+  margin: 2%;
+  border-radius: 10px;
 }
 
 .book-stay {
   background-color: $gray;
   color: $header;
   border: none;
+  font-weight: bold;
+  font-size: 45px;
 }
