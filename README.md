@@ -4,8 +4,11 @@
 ### Abstract
 We had to create a website that has both customer and manager view, collects and posts data to a server through the fetch API, and allows the customer to find and make new bookings. It also allows the manager to see the hotel's current occupancy and revenue.
 
-![app in action!](https://media.giphy.com/media/llrwzm74KiEk8O1D1v/giphy.gif)
+### GIF's of Application
 
+![manager dashboard view with demonstrated responsiveness](assets/manager-responsiveness.gif)
+
+![customer dashboard view with demonstrated responsiveness](assets/customer-responsiveness.gif)
 
 ### SetUp
 To view this application at [github project](https://github.com/bjjdestroyer/overlook-hotel).
