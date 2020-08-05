@@ -6,9 +6,9 @@ We had to create a website that has both customer and manager view, collects and
 
 ### GIF's of Application
 
-![manager dashboard view with demonstrated responsiveness](/assets/manager-responsiveness.gif)
+![manager dashboard view with demonstrated responsiveness](./assets/manager-responsiveness.gif)
 
-![customer dashboard view with demonstrated responsiveness](/assets/customer-responsiveness.gif)
+![customer dashboard view with demonstrated responsiveness](./assets/customer-responsiveness.gif)
 
 ### SetUp
 To view this application at [github project](https://github.com/bjjdestroyer/overlook-hotel).
