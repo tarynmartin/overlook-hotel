@@ -1,5 +1,5 @@
-import { expect } from 'chai'
-import Bookings from '../src/Bookings.js';
+// import { expect } from 'chai'
+// import Bookings from '../src/Bookings.js';
 
 describe('Bookings', function () {
   let bookings;

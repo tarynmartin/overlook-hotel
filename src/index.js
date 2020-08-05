@@ -5,8 +5,6 @@ import './User.js';
 import './Manager.js';
 import './Customer.js';
 import './Rooms.js';
-import './Bookings.js';
-import './Users.js';
 import getOnLoad from './get-api.js';
 import postNewBooking from './post-api.js';
 const moment = require('moment');
